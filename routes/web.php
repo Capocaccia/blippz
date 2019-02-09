@@ -17,3 +17,7 @@ Route::get('/{any}', 'SpaController@index')->where('any', '.*');
 Route::prefix('admin')->group(function() {
     Route::post('user', 'UserAdminController@save_user');
 });
+
+Route::prefix('auth')->group(function() {
+    Route::post('login', 'AuthController@login');
+});

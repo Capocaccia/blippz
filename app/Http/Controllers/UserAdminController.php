@@ -9,9 +9,9 @@ use Illuminate\Support\Facades\Hash;
 class UserAdminController extends Controller
 {
     public function save_user(Request $request) {
-        $user = User::firstOrNew(['id' => $request->input('id')]);
+        $user = new User;
         $user->fill($request->all());
-        $password = $request->input('generatePassword');
+        $password = $request->password;
         $user->password = Hash::make($password);
         $user->save();
         return response()->json(['result' => 'success', 'user' => $user, 'password' => $request->input('generatePassword') ? $password : '']);

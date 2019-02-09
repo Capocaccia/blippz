@@ -1,16 +1,28 @@
 <template>
   <div class="hello">
-    <input type="text" placeholder="Username">
-    <input type="text" placeholder="Password">
+    <input type="text" placeholder="Username" v-model="username">
+    <input type="text" placeholder="Password" v-model="password">
+    <button class="login" @click="login">Submit</button>
   </div>
 </template>
 
 <script>
+  import eventService from '../../eventService'
 export default {
   name: 'Login',
   data () {
     return {
-      msg: 'Login'
+      msg: 'Login',
+      password: null,
+      username: null
+    }
+  },
+  methods: {
+    login: function () {
+      eventService.auth.userLogin({
+        username: this.username,
+        password: this.password
+      })
     }
   }
 }
