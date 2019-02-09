@@ -21,3 +21,11 @@ Route::prefix('admin')->group(function() {
 Route::prefix('auth')->group(function() {
     Route::post('login', 'AuthController@login');
 });
+
+Route::prefix('blip')->group(function() {
+    Route::post('save', 'BlipController@save');
+});
+
+Route::prefix('contact')->group(function() {
+    Route::post('save', 'ContactController@save');
+});

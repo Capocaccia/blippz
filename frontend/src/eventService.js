@@ -1,9 +1,5 @@
 import axios from 'axios'
 
-const apiClient = axios.create({
-    baseURL: 'http://blippz.test'
-})
-
 export default {
     auth: {
         userLogin(payload) {
@@ -19,6 +15,19 @@ export default {
     admin: {
         createUser(payload) {
             return axios.post('/admin/user', payload)
+        }
+    },
+    blip: {
+        saveBlip(payload) {
+            return axios.post('/blip/save', payload)
+        },
+        getBlips(payload) {
+            return axios.post('/blip/all', payload)
+        }
+    },
+    contact: {
+        saveContact(payload) {
+            return axios.post('/contact/save', payload)
         }
     }
 }

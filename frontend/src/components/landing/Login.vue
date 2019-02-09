@@ -25,7 +25,8 @@ export default {
       })
           .then((rsp) => {
             if(rsp.data.result === 'success') {
-              this.$router.push(`/${rsp.data.redirect}`)
+                this.$store.commit('setUser', rsp.data.user)
+                this.$router.push(`/${rsp.data.redirect}`)
             }
           })
     }
