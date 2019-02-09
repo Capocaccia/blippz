@@ -23,6 +23,11 @@ export default {
         username: this.username,
         password: this.password
       })
+          .then((rsp) => {
+            if(rsp.data.result === 'success') {
+              this.$router.push(`/${rsp.data.redirect}`)
+            }
+          })
     }
   }
 }
