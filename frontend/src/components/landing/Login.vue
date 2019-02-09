@@ -1,21 +1,17 @@
 <template>
   <div class="hello">
-    <h1>{{ msg }}</h1>
+    <input type="text" placeholder="Username">
+    <input type="text" placeholder="Password">
   </div>
 </template>
 
 <script>
 export default {
-  name: 'HelloWorld',
+  name: 'Login',
   data () {
     return {
-      msg: ''
+      msg: 'Login'
     }
-  },
-  created () {
-    fetch('/api/mock').then(res => res.json()).then(({ msg }) => {
-      this.msg = msg
-    })
   }
 }
 </script>

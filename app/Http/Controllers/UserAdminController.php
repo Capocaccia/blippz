@@ -1,0 +1,20 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use App\User;
+use Illuminate\Support\Facades\Hash;
+
+class UserAdminController extends Controller
+{
+    public function save_user(Request $request) {
+        $user = User::firstOrNew(['id' => $request->input('id')]);
+        $user->fill($request->all());
+        $password = $request->input('generatePassword');
+        $user->password = Hash::make($password);
+        $user->save();
+        return response()->json(['result' => 'success', 'user' => $user, 'password' => $request->input('generatePassword') ? $password : '']);
+    }
+
+}
