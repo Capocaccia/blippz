@@ -1,11 +1,11 @@
 <template>
     <div>
-        <input type="date" v-model="start">
-        <input type="date" v-model="end">
-        <input type="text" placeholder="Notes" v-model="notes">
-        <button @click="createBlip">Submit Blip</button>
+        <input class="input" type="date" v-model="start">
+        <input class="input" type="date" v-model="end">
+        <input class="input" type="text" placeholder="Notes" v-model="notes">
+        <button class="button" @click="createBlip">Submit Blip</button>
         <ul>
-            <li v-for="contact in contacts">
+            <li v-for="(contact, idx) in contacts" :key="idx">
                 {{ contact.firstName }}
                 {{ contact.lastName }}
                 <input type="checkbox" :value="contact.id" @click="addContact(contact.id)">

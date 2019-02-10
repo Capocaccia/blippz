@@ -25,7 +25,7 @@ import login from '../components/landing/Login'
 import register from '../components/landing/Register'
 
 export default {
-  name: 'home',
+  name: 'landing',
   data() {
     return {
       register: false,

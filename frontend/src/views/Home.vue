@@ -1,15 +1,16 @@
 <template>
   <div class="home">
-    <img src="../assets/logo.png">
-
+    <create>
+    </create>
     <blipList>
     </blipList>
-
   </div>
 </template>
 
 <script>
-  import blipList from '../components/blips/BlipList'
+  import blipList from '../components/blips/blipList'
+  import create from '../components/create'
+  import eventService from '../eventService'
 
   export default {
     name: 'home',
@@ -20,10 +21,26 @@
       }
     },
     components: {
-      blipList
+      blipList,
+      create
     },
     methods: {
 
+    },
+    mounted() {
+      eventService.blip.getBlips({
+        'user_id' : this.$store.getters.userId
+      })
+      .then((rsp) => {
+        this.$store.commit('setBlips', rsp.data.data)
+      })
+
+      eventService.contact.getContacts({
+        'user_id' : this.$store.getters.userId
+      })
+      .then((rsp) => {
+        this.$store.commit('setContacts', rsp.data.data)
+      })
     }
   }
 </script>

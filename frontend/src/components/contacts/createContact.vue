@@ -4,15 +4,18 @@
             Add Contact
         </button>
         <div class="add-contact" v-if="showAddForm">
-            <input type="text" placeholder="First Name" v-model="firstName">
-            <input type="text" placeholder="Last Name" v-model="lastName">
-            <input type="text" placeholder="Email" v-model="email">
-            <select name="Default" v-model="isDefault">
-                <option value=""></option>
-                <option value="true">Yes</option>
-                <option value="false">No</option>
-            </select>
-            <button @click="submitContact">Submit</button>
+            <input class="input" type="text" placeholder="First Name" v-model="firstName">
+            <input class="input" type="text" placeholder="Last Name" v-model="lastName">
+            <input class="input" type="text" placeholder="Email" v-model="email">
+            <div>
+                Is this a default contact?
+                <select class="select" name="Default" v-model="isDefault">
+                    <option value=""></option>
+                    <option value="true">Yes</option>
+                    <option value="false">No</option>
+                </select>
+            </div>
+            <button class="button" @click="submitContact">Submit</button>
         </div>
     </div>
 </template>

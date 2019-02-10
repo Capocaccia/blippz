@@ -13,7 +13,6 @@
 
 <script>
     import { mapState } from 'vuex'
-    import eventService from '../../eventService'
 
     export default {
         name: "contactsList",
@@ -26,15 +25,7 @@
         methods: {},
         computed: mapState([
             'contacts'
-        ]),
-        mounted() {
-            eventService.contact.getContacts({
-                'user_id' : this.$store.getters.userId
-            })
-            .then((rsp) => {
-                this.$store.commit('setContacts', rsp.data.data)
-            })
-        }
+        ])
     }
 </script>
 
