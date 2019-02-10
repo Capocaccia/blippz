@@ -24,6 +24,7 @@ Route::prefix('auth')->group(function() {
 
 Route::prefix('blip')->group(function() {
     Route::post('save', 'BlipController@save');
+    Route::post('all', 'BlipController@getAll');
 });
 
 Route::prefix('contact')->group(function() {

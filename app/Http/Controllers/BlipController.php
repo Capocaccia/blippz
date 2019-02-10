@@ -13,4 +13,9 @@ class BlipController extends Controller
         $blip->save();
         return response()->json(['result' => 'success']);
     }
+
+    public function getAll(Request $request) {
+        $blips = Blip::where('user_id', $request->id)->get();
+        return response()->json(['result' => 'success', 'data' => $blips]);
+    }
 }
