@@ -9,7 +9,7 @@
 </template>
 
 <script>
-  import blipList from '../components/BlipList'
+  import blipList from '../components/blips/BlipList'
 
   export default {
     name: 'home',

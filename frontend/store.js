@@ -20,6 +20,9 @@ export default new Vuex.Store({
     getters: {
         userId: state => {
             return state.user.id
+        },
+        blips: state => {
+            return state.blips
         }
     },
     setters: {

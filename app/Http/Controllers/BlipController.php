@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 class BlipController extends Controller
 {
-    public function save_blip(Request $request) {
+    public function save(Request $request) {
         $blip = new Blip();
         $blip->fill($request->all());
         $blip->save();
@@ -15,7 +15,7 @@ class BlipController extends Controller
     }
 
     public function getAll(Request $request) {
-        $blips = Blip::where('user_id', $request->id)->get();
+        $blips = Blip::where('user_id', $request->user_id)->get();
         return response()->json(['result' => 'success', 'data' => $blips]);
     }
 }
