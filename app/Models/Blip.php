@@ -25,9 +25,19 @@ class Blip extends Model
         'contact_3'
     ];
 
-    public function contactsAssigned()
+    public function firstContact()
     {
-        return $this->hasMany('App\Models\Contact', 'event_id', 'id');
+        return $this->hasOne('App\Models\Contact', 'id', 'contact_1');
+    }
+
+    public function secondContact()
+    {
+        return $this->hasOne('App\Models\Contact', 'id', 'contact_2');
+    }
+
+    public function thirdContact()
+    {
+        return $this->hasOne('App\Models\Contact', 'id', 'contact_3');
     }
 
 

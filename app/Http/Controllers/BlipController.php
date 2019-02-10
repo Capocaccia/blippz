@@ -15,7 +15,7 @@ class BlipController extends Controller
     }
 
     public function getAll(Request $request) {
-        $blips = Blip::where('user_id', $request->user_id)->get();
+        $blips = Blip::where('user_id', $request->user_id)->with('firstContact', 'secondContact', 'thirdContact')->get();
         return response()->json(['result' => 'success', 'data' => $blips]);
     }
 }
