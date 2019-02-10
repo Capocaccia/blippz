@@ -2,7 +2,7 @@
 
     <div class="contacts-list">
         <div class="contact"
-        v-for="(contact, idx) in contacts" key="idx">
+        v-for="(contact, idx) in contacts" :key="idx">
             {{ contact.firstName }}
             {{ contact.lastName }}
             {{ contact.email }}

@@ -4,12 +4,19 @@
         <input type="date" v-model="end">
         <input type="text" placeholder="Notes" v-model="notes">
         <button @click="createBlip">Submit Blip</button>
+        <ul>
+            <li v-for="contact in contacts">
+                {{ contact.firstName }}
+                {{ contact.lastName }}
+                <input type="checkbox" :value="contact.id" @click="addContact(contact.id)">
+            </li>
+        </ul>
     </div>
-    
 </template>
 
 <script>
     import eventService from '../../eventService'
+    import { mapState } from 'vuex'
 
     export default {
         name: "createBlip",
@@ -18,9 +25,12 @@
                 start: null,
                 end: null,
                 notes: null,
-                contacts: '1,5,23'
+                blipContacts: []
             }
         },
+        computed: mapState([
+            'contacts'
+        ]),
         components: {},
         mixins: [],
         props: [],
@@ -30,14 +40,23 @@
                     start: this.start,
                     end: this.end,
                     notes: this.notes,
-                    contacts: this.contacts,
+                    contact_1: this.blipContacts[0],
+                    contact_2: this.blipContacts[1],
+                    contact_3: this.blipContacts[2],
                     user_id: this.$store.getters.userId
                 }
 
                 eventService.blip.saveBlip(payload)
+            },
+            addContact: function(id) {
+                if(this.blipContacts.indexOf(id) === -1 && this.blipContacts.length <= 3) {
+                    this.blipContacts.push(id)
+                } else {
+                    let toSlice = this.blipContacts.indexOf(id)
+                    this.blipContacts.splice(toSlice, 1)
+                }
             }
-        },
-        computed: {}
+        }
     }
 </script>
 

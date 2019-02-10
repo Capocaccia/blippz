@@ -19,7 +19,9 @@ class Blip extends Migration
             $table->string('start');
             $table->string('end');
             $table->string('notes');
-            $table->string('contacts');
+            $table->string('contact_1');
+            $table->string('contact_2');
+            $table->string('contact_3');
             $table->timestamps();
         });
     }

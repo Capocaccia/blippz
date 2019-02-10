@@ -20,7 +20,9 @@ class Blip extends Model
         'start',
         'end',
         'notes',
-        'contacts'
+        'contact_1',
+        'contact_2',
+        'contact_3'
     ];
 
     public function contactsAssigned()
