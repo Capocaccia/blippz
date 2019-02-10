@@ -6,7 +6,8 @@ Vue.use(Vuex)
 export default new Vuex.Store({
     state: {
         user: null,
-        blips: null
+        blips: null,
+        contacts: null
     },
     mutations: {
         setUser (state, key) {
@@ -15,7 +16,9 @@ export default new Vuex.Store({
         setBlips (state, key) {
             state.blips = key
         },
-
+        setContacts (state, key) {
+            state.contacts = key
+        }
     },
     getters: {
         userId: state => {
@@ -23,6 +26,9 @@ export default new Vuex.Store({
         },
         blips: state => {
             return state.blips
+        },
+        contacts: state => {
+            return state.contacts
         }
     },
     setters: {

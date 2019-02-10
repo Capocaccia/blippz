@@ -15,6 +15,7 @@ class Contact extends Model
         'firstName',
         'lastName',
         'email',
+        'user_id',
         'default'
     ];
 

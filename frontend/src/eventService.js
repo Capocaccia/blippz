@@ -28,6 +28,9 @@ export default {
     contact: {
         saveContact(payload) {
             return axios.post('/contact/save', payload)
+        },
+        getContacts(payload) {
+            return axios.post('/contact/all', payload)
         }
     }
 }

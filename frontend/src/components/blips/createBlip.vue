@@ -9,15 +9,34 @@
 </template>
 
 <script>
+    import eventService from '../../eventService'
+
     export default {
         name: "createBlip",
         data() {
-            return {}
+            return {
+                start: null,
+                end: null,
+                notes: null,
+                contacts: '1,5,23'
+            }
         },
         components: {},
         mixins: [],
         props: [],
-        methods: {},
+        methods: {
+            createBlip: function () {
+                let payload = {
+                    start: this.start,
+                    end: this.end,
+                    notes: this.notes,
+                    contacts: this.contacts,
+                    user_id: this.$store.getters.userId
+                }
+
+                eventService.blip.saveBlip(payload)
+            }
+        },
         computed: {}
     }
 </script>

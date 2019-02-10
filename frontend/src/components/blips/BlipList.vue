@@ -1,11 +1,17 @@
 <template>
     <div>
-        <div class="blip-admin">
-            <button class="blip-create" @click="showBlipForm">
-                Create
-            </button>
-            <createBlip v-if="showForm">
-            </createBlip>
+        <div class="admin-group">
+            <div class="blip-admin">
+                <button class="blip-create" @click="showBlipForm">
+                    Create
+                </button>
+                <createBlip v-if="showForm">
+                </createBlip>
+            </div>
+            <div class="contact-admin">
+                <createContact>
+                </createContact>
+            </div>
         </div>
 
         <div class="blip-list">
@@ -16,6 +22,10 @@
                 {{ blip.notes }}
             </div>
         </div>
+
+        <div class="contact-list">
+            <contactList></contactList>
+        </div>
     </div>
 
 
@@ -25,6 +35,8 @@
     import eventService from '../../eventService'
     import { mapState } from 'vuex'
     import createBlip from './createBlip'
+    import createContact from '../contacts/createContact'
+    import contactList from '../contacts/contactsList'
 
     export default {
         name: "BlipList",
@@ -34,7 +46,9 @@
             }
         },
         components: {
-            createBlip
+            createBlip,
+            createContact,
+            contactList
         },
         methods: {
             showBlipForm() {

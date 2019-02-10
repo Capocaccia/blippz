@@ -29,4 +29,5 @@ Route::prefix('blip')->group(function() {
 
 Route::prefix('contact')->group(function() {
     Route::post('save', 'ContactController@save');
+    Route::post('all', 'ContactController@getAll');
 });
