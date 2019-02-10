@@ -1,7 +1,12 @@
 <template>
 
-    <div class="contacts-list">
-        <div class="contact"
+    <div class="contacts-list section">
+        <div>
+            <h2 class="title">
+                Your Contacts
+            </h2>
+        </div>
+        <div class="contact is-flex is-spaced is-full box"
         v-for="(contact, idx) in contacts" :key="idx">
             {{ contact.firstName }}
             {{ contact.lastName }}

@@ -1,6 +1,6 @@
 <template>
-    <div>
-        <button @click="addContact">
+    <div class="section">
+        <button class="button" @click="addContact">
             Add Contact
         </button>
         <div class="add-contact" v-if="showAddForm">
@@ -10,7 +10,6 @@
             <div>
                 Is this a default contact?
                 <select class="select" name="Default" v-model="isDefault">
-                    <option value=""></option>
                     <option value="true">Yes</option>
                     <option value="false">No</option>
                 </select>
@@ -22,6 +21,7 @@
 
 <script>
     import eventService from '../../eventService'
+    import toastr from 'toastr'
 
     export default {
         name: "createContact",
@@ -39,7 +39,7 @@
         props: [],
         methods: {
             addContact: function () {
-                this.showAddForm = true
+                this.showAddForm = !this.showAddForm
             },
             submitContact: function () {
                 let payload = {
@@ -50,7 +50,24 @@
                     user_id: this.$store.getters.userId
                 }
 
-                eventService.contact.saveContact(payload)
+                let isReadyToSubmit = true
+
+                Object.values(payload).forEach((value) => {
+                    value === null ? isReadyToSubmit = false : ''
+                })
+
+                if(isReadyToSubmit) {
+                    eventService.contact.saveContact(payload)
+                        .then((rsp) => {
+                            if(rsp.msg === 'success') {
+                                toastr.success('Contact saved!')
+                            } else {
+                                toastr.error('An error has occurred.')
+                            }
+                        })
+                } else {
+                    toastr.error('Please fill out all fields')
+                }
             }
         },
         computed: {}

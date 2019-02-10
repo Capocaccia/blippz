@@ -1,5 +1,10 @@
 <template>
-    <div class="blip-list">
+    <div class="blip-list section">
+        <div>
+            <h2 class="title">
+                Your Blips
+            </h2>
+        </div>
         <div class="blip is-flex is-spaced column is-full box"
              v-for="(blip, idx) in blips" :key="idx">
             <div>
@@ -14,7 +19,7 @@
                 <div class="title">Notes</div>
                 {{ blip.notes }}
             </div>
-            <div class="contacts-list">
+            <div>
                 <div class="title">Contacts</div>
                 <span v-if="blip.contact_1">
                     {{blip.first_contact.firstName}}

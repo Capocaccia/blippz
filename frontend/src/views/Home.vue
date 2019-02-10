@@ -1,9 +1,16 @@
 <template>
   <div class="home">
-    <create>
-    </create>
-    <blipList>
-    </blipList>
+    <div class="section level columns">
+      <div class="notification box column is-marginless is-3 is-info has-text-centered">
+          View My Blips
+        </div>
+      <div class="notification box column is-marginless is-3 is-primary has-text-centered">
+          Add A Blip
+        </div>
+      <div class="notification box column is-marginless is-3 is-warning has-text-centered">
+          Add A Contact
+        </div>
+    </div>
   </div>
 </template>
 
