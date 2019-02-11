@@ -1,7 +1,7 @@
 <template>
 
-    <div class="contacts-list section">
-        <div>
+    <div class="contacts-list column">
+        <div class="section">
             <h2 class="title">
                 Your Contacts
             </h2>

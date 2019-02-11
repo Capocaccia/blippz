@@ -1,7 +1,7 @@
 <template>
-    <div class="blip-list section">
+    <div class="blip-list column">
         <div>
-            <h2 class="title">
+            <h2 class="title section">
                 Your Blips
             </h2>
         </div>
@@ -63,8 +63,4 @@
      .blip {
          justify-content: space-around;
      }
-    .contacts-list {
-        display: flex;
-        flex-direction: column;
-    }
 </style>

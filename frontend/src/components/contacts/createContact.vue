@@ -1,9 +1,11 @@
 <template>
-    <div class="section">
-        <button class="button" @click="addContact">
-            Add Contact
-        </button>
-        <div class="add-contact" v-if="showAddForm">
+    <div class="column">
+        <div class="section">
+            <h2 class="title">
+                Add A Contact
+            </h2>
+        </div>
+        <div class="add-contact">
             <input class="input" type="text" placeholder="First Name" v-model="firstName">
             <input class="input" type="text" placeholder="Last Name" v-model="lastName">
             <input class="input" type="text" placeholder="Email" v-model="email">
@@ -27,7 +29,6 @@
         name: "createContact",
         data() {
             return {
-                showAddForm: false,
                 firstName: null,
                 lastName: null,
                 email: null,
@@ -38,9 +39,6 @@
         mixins: [],
         props: [],
         methods: {
-            addContact: function () {
-                this.showAddForm = !this.showAddForm
-            },
             submitContact: function () {
                 let payload = {
                     firstName: this.firstName,

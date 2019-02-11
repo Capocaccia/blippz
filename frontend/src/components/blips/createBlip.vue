@@ -1,9 +1,11 @@
 <template>
-    <div class="section">
-        <button class="button" @click="addBlip">
-            Add Blip
-        </button>
-        <div class="add-blip" v-if="showForm">
+    <div class="column">
+        <div class="section">
+            <h2 class="title">
+                Add A Blip
+            </h2>
+        </div>
+        <div class="add-blip">
             <input class="input" type="date" v-model="start">
             <input class="input" type="date" v-model="end">
             <input class="input" type="text" placeholder="Notes" v-model="notes">
@@ -33,7 +35,6 @@
                 end: null,
                 notes: null,
                 blipContacts: [],
-                showForm: false
             }
         },
         computed: mapState([
@@ -43,9 +44,6 @@
         mixins: [],
         props: [],
         methods: {
-            addBlip: function () {
-                this.showForm = !this.showForm
-            },
             createBlip: function () {
                 let payload = {
                     start: this.start,
