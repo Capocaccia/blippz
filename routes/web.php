@@ -25,9 +25,11 @@ Route::prefix('auth')->group(function() {
 Route::prefix('blip')->group(function() {
     Route::post('save', 'BlipController@save');
     Route::post('all', 'BlipController@getAll');
+    Route::post('delete', 'BlipController@delete');
 });
 
 Route::prefix('contact')->group(function() {
     Route::post('save', 'ContactController@save');
     Route::post('all', 'ContactController@getAll');
+    Route::post('delete', 'ContactController@delete');
 });

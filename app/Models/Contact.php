@@ -16,7 +16,13 @@ class Contact extends Model
         'lastName',
         'email',
         'user_id',
+        'trashed',
         'default'
     ];
+
+    public function scopeActive($query)
+    {
+        return $query->where('trashed', 0);
+    }
 
 }

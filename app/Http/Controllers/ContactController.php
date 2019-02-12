@@ -15,7 +15,15 @@ class ContactController extends Controller
     }
 
     public function getAll(Request $request) {
-        $contacts = Contact::where('user_id', $request->user_id)->get();
+        $contacts = Contact::active()->where('user_id', $request->user_id)->get();
         return response()->json(['result' => 'success', 'data' => $contacts]);
     }
+
+    public function delete(Request $request) {
+        $contactToDelete = Contact::where('id', $request->id)->firstOrFail();
+        $contactToDelete->trashed = 1;
+        $contactToDelete->save();
+        return response()->json(['result' => 'success']);
+    }
+
 }

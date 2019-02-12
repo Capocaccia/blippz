@@ -20,6 +20,7 @@ class Contacts extends Migration
             $table->string('email');
             $table->string('user_id');
             $table->boolean('default')->default(false);
+            $table->boolean('trashed');
             $table->timestamps();
         });
     }

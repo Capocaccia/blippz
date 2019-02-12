@@ -15,7 +15,15 @@ class BlipController extends Controller
     }
 
     public function getAll(Request $request) {
-        $blips = Blip::where('user_id', $request->user_id)->with('firstContact', 'secondContact', 'thirdContact')->get();
+        $blips = Blip::active()->where('id', $request->user_id)->with('firstContact', 'secondContact', 'thirdContact')->get();
         return response()->json(['result' => 'success', 'data' => $blips]);
+    }
+
+    public function delete(Request $request)
+    {
+        $blipToDelete = Blip::where('id', $request->id)->firstOrFail();
+        $blipToDelete->trashed = 1;
+        $blipToDelete->save();
+        return response()->json(['result' => 'success']);
     }
 }

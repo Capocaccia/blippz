@@ -50,4 +50,8 @@
     margin-top: 2rem;
   }
 
+  .button-no-margin {
+    margin: 0;
+  }
+
 </style>

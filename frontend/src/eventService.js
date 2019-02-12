@@ -23,6 +23,9 @@ export default {
         },
         getBlips(payload) {
             return axios.post('/blip/all', payload)
+        },
+        delete(payload) {
+            return axios.post('/blip/delete', payload)
         }
     },
     contact: {
@@ -31,6 +34,9 @@ export default {
         },
         getContacts(payload) {
             return axios.post('/contact/all', payload)
+        },
+        delete(payload) {
+            return axios.post('/contact/delete', payload)
         }
     }
 }

@@ -5,28 +5,35 @@
                 Your Blips
             </h2>
         </div>
-        <div class="grid-container full blip asdadsa"
+        <div class="grid-container fifths row">
+            <h5>
+                Start
+            </h5>
+            <h5>
+                End
+            </h5>
+            <h5>
+                Notes
+            </h5>
+            <h5>
+                Contacts
+            </h5>
+            <h5>
+                Manage
+            </h5>
+        </div>
+        <div class="grid-container fifths row"
              v-for="(blip, idx) in blips" :key="idx">
             <div>
-                <h5>
-                    Start
-                </h5>
                 {{ blip.start }}
             </div>
             <div>
-                <h5>
-                    End
-                </h5>
                 {{ blip.end }}
             </div>
             <div>
-                <h5>
-                    Notes
-                </h5>
                 {{ blip.notes }}
             </div>
             <div>
-                <h5>Contacts</h5>
                 <span v-if="blip.contact_1">
                     {{blip.first_contact.firstName}}
                     {{blip.first_contact.lastName}}
@@ -43,12 +50,19 @@
                     {{blip.third_contact.email}}
                 </span>
             </div>
+            <div>
+                <div class="button button-no-margin"
+                @click="deleteBlip(blip.id)">
+                    Delete
+                </div>
+            </div>
         </div>
     </div>
 </template>
 
 <script>
     import {mapState} from 'vuex'
+    import eventService from '../../eventService'
 
     export default {
         name: "blipList",
@@ -58,7 +72,17 @@
         components: {},
         mixins: [],
         props: [],
-        methods: {},
+        methods: {
+            deleteBlip(blipId) {
+                eventService.blip.delete({
+                    id: blipId
+                })
+                .then((rsp) => {
+                    console.log(rsp)
+                    toastr.success('Blip deleted.')
+                })
+            }
+        },
         computed: mapState([
             'blips'
         ])
@@ -66,10 +90,5 @@
 </script>
 
 <style scoped>
-
-    .blip {
-        display: flex;
-        justify-content: space-around;
-    }
 
 </style>

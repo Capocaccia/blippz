@@ -104,6 +104,10 @@
         height: 1px;
     }
 
+    .navbar-item:hover {
+        cursor: pointer;
+    }
+
     .navbar-item:hover::after {
         background-color: black;
     }
