@@ -63,6 +63,7 @@
                     eventService.blip.saveBlip(payload)
                         .then((rsp) => {
                             if(rsp.msg === 'success') {
+                                this.$store.commit('addBlip', payload)
                                 toastr.success('Blip saved.')
                             } else {
                                 toastr.error('An error has occurred.')

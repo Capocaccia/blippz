@@ -55,7 +55,8 @@
                 if(isReadyToSubmit) {
                     eventService.contact.saveContact(payload)
                         .then((rsp) => {
-                            if(rsp.msg === 'success') {
+                            if(rsp.data.result === 'success') {
+                                this.$store.commit('addContact', payload)
                                 toastr.success('Contact saved!')
                             } else {
                                 toastr.error('An error has occurred.')

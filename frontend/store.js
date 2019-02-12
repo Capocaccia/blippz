@@ -20,12 +20,24 @@ export default new Vuex.Store({
             state.contacts = key
         },
         removeBlip(state, key) {
-            console.log(key)
             state.blips.forEach((blip, idx) => {
                 if(blip.id === key) {
                     state.blips.splice(idx, 1)
                 }
             })
+        },
+        removeContacts(state, key) {
+            state.contacts.forEach((contact, idx) => {
+                if(contact.id === key) {
+                    state.contacts.splice(idx, 1)
+                }
+            })
+        },
+        addBlip(state, key) {
+            state.contacts.push(key)
+        },
+        addContact(state, key) {
+            state.contacts.push(key)
         }
     }
     ,

@@ -59,8 +59,12 @@
                     id: contactId
                 })
                 .then((rsp) => {
-                    console.log(rsp)
-                    toastr.success('Contact deleted.')
+                    if(rsp.data.result === 'success') {
+                        this.$store.commit('removeContact', contactId)
+                        toastr.success('Contact deleted.')
+                    } else {
+                        toastr.error('There was a problem deleting this contact.')
+                    }
                 })
             }
         },
