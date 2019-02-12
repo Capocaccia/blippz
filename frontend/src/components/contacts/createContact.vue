@@ -14,7 +14,7 @@
                     <option value="false">No</option>
                 </select>
             </div>
-            <button class="button" @click="submitContact">Submit</button>
+            <button class="button" @click="submitContact">Submit Contact</button>
         </div>
     </div>
 </template>

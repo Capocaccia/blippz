@@ -4,7 +4,13 @@
             Add A Blip
         </h2>
         <div class="add-blip form-container">
+            <h5>
+                Start
+            </h5>
             <input class="input" type="date" v-model="start">
+            <h5>
+                End
+            </h5>
             <input class="input" type="date" v-model="end">
             <textarea class="input" type="text" placeholder="Tell your contacts where you will be and details about your adventure!" v-model="notes"></textarea>
             <h5>Select Contacts (Maximum of 3)</h5>
@@ -59,8 +65,6 @@
                     contact_3: contacts[2] ? contacts[2].id : null,
                     user_id: this.$store.getters.userId
                 }
-
-                console.log(contacts)
 
                 if(!payload.contact_1) {
                     toastr.error('You must have at least one contact.')
