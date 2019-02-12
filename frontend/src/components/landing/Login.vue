@@ -1,5 +1,5 @@
 <template>
-  <div class="login column is-4">
+  <div class="login">
 
     <div class="register" v-if="showRegistrationForm && !cancelRegistrationForm">
         <input type="text" placeholder="First Name" v-model="user.firstName">
@@ -85,7 +85,8 @@ export default {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: rgba(0,0,0,0.5);
+    padding: 2rem;
+    background-color: rgba(5,56,107);
   }
 
   input {

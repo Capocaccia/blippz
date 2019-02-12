@@ -1,25 +1,24 @@
 <template>
   <div class="home">
-    <div class="section level columns">
-        <div class="notification box column is-marginless is-3 is-info has-text-centered"
+    <div class="section level navbar">
+        <div class="notification navbar-item column is-marginless is-2 has-text-centered"
             @click="toggleView('viewBlipsToggle')">
             View My Blips
         </div>
-        <div class="notification box column is-marginless is-3 is-primary has-text-centered"
+        <div class="notification navbar-item column is-marginless is-2 has-text-centered"
              @click="toggleView('addBlipToggle')">
             Add A Blip
         </div>
-        <div class="notification box column is-marginless is-3 is-info has-text-centered"
+        <div class="notification navbar-item column is-marginless is-2 has-text-centered"
              @click="toggleView('viewContactsToggle')">
             View Contacts
         </div>
-        <div class="notification box column is-marginless is-3 is-primary has-text-centered"
+        <div class="notification navbar-item column is-marginless is-2 has-text-centered"
              @click="toggleView('addContactToggle')">
             Add A Contact
         </div>
-
     </div>
-    <div class="section level columns">
+    <div class="section level container">
         <blipList v-if="toggles.viewBlipsToggle">
         </blipList>
         <createBlip v-if="toggles.addBlipToggle">
@@ -85,3 +84,33 @@
     }
   }
 </script>
+
+<style scope>
+    .navbar {
+        display: flex;
+        justify-content: space-around;
+        background-color: rgba(5,56,107, 1);
+        color: rgb(237,245,225);
+    }
+
+    .navbar-item {
+        background-color: rgba(5,56,107, 1);
+        color: rgb(237,245,225);
+        padding: 2rem 2rem;
+        width: 100%;
+        text-align: center;
+    }
+
+    .navbar-item:hover {
+        cursor: pointer;
+        background-color: rgb(55,150,131);
+        transition: 0.3s;
+    }
+
+    /*rgba(5,56,107);*/
+    /*rgb(55,150,131)*/
+    /*rgb(92,219,149)*/
+    /*rgb(142,228,175)*/
+    /*rgb(237,245,225)*/
+
+</style>

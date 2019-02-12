@@ -8,19 +8,19 @@
         <div class="blip is-flex is-spaced column is-full box"
              v-for="(blip, idx) in blips" :key="idx">
             <div>
-                <div class="title">Start</div>
+                <div class="blip-title">Start</div>
                 {{ blip.start }}
             </div>
             <div>
-                <div class="title">End</div>
+                <div class="blip-title">End</div>
                 {{ blip.end }}
             </div>
             <div>
-                <div class="title">Notes</div>
+                <div class="blip-title">Notes</div>
                 {{ blip.notes }}
             </div>
             <div>
-                <div class="title">Contacts</div>
+                <div class="blip-title">Contacts</div>
                 <span v-if="blip.contact_1">
                     {{blip.first_contact.firstName}}
                     {{blip.first_contact.lastName}}
@@ -63,4 +63,22 @@
      .blip {
          justify-content: space-around;
      }
+
+    .title {
+        background-color: rgba(0,0,0,0.7);
+        color: white;
+        border-radius: 6px;
+    }
+
+    .box {
+        background-color: rgba(255,255,255,0.7);
+        color: white;
+    }
+
+    .blip-title {
+        font-size: 2rem;
+        font-weight: 600;
+        line-height: 1.125;
+    }
+
 </style>
