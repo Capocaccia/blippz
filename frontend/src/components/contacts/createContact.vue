@@ -46,6 +46,11 @@
                     user_id: this.$store.getters.userId
                 }
 
+                if(!this.emailIsValid(this.email)) {
+                    toastr.error('The email address is invalid');
+                    return;
+                }
+
                 let isReadyToSubmit = true
 
                 Object.values(payload).forEach((value) => {
@@ -65,6 +70,9 @@
                 } else {
                     toastr.error('Please fill out all fields')
                 }
+            },
+            emailIsValid: function (email) {
+                return /\S+@\S+\.\S+/.test(email)
             }
         },
         computed: {}

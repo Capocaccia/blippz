@@ -27,6 +27,7 @@
 
 <script>
   import eventService from '../../eventService'
+  import toastr from 'toastr'
 
 export default {
   name: 'Login',
@@ -65,10 +66,18 @@ export default {
             }
           })
       },
+      emailIsValid: function (email) {
+          return /\S+@\S+\.\S+/.test(email)
+      },
       submitRegistration: function () {
           let emptyValue = false
 
           Object.values(this.user).forEach((val) => val === null ? emptyValue = true : '')
+
+          if(!this.emailIsValid(this.user.email)) {
+              toastr.error('The email address is invalid.');
+              return;
+          }
 
           if(!emptyValue) {
               eventService.admin.createUser(this.user)
