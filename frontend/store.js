@@ -50,6 +50,9 @@ export default new Vuex.Store({
         userId: state => {
             return state.user.id
         },
+        user: state => {
+            return state.user
+        },
         blips: state => {
             return state.blips
         },

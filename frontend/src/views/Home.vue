@@ -83,6 +83,11 @@
         this.$store.commit('setDefaultContacts')
       })
         this.toggles.viewBlipsToggle = true
+    },
+    beforeMount() {
+        if(!this.$store.getters.user) {
+            this.$router.push({ path: '/' })
+        }
     }
   }
 </script>
