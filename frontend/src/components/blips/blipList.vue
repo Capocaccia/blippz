@@ -63,6 +63,7 @@
 <script>
     import {mapState} from 'vuex'
     import eventService from '../../eventService'
+    import toastr from 'toastr'
 
     export default {
         name: "blipList",
@@ -77,8 +78,8 @@
                 eventService.blip.delete({
                     id: blipId
                 })
-                .then((rsp) => {
-                    console.log(rsp)
+                .then(() => {
+                    this.$store.commit('removeBlip', blipId)
                     toastr.success('Blip deleted.')
                 })
             }

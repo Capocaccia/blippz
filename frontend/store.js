@@ -18,8 +18,17 @@ export default new Vuex.Store({
         },
         setContacts (state, key) {
             state.contacts = key
+        },
+        removeBlip(state, key) {
+            console.log(key)
+            state.blips.forEach((blip, idx) => {
+                if(blip.id === key) {
+                    state.blips.splice(idx, 1)
+                }
+            })
         }
-    },
+    }
+    ,
     getters: {
         userId: state => {
             return state.user.id
