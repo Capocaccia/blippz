@@ -1,9 +1,9 @@
 <template>
     <div class="blip-list interior-container">
         <div>
-            <h2 class="title">
+            <h3 class="title">
                 Your Blips
-            </h2>
+            </h3>
         </div>
         <div class="grid-container fifths row">
             <h5>

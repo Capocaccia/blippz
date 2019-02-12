@@ -14,6 +14,9 @@ export default new Vuex.Store({
         setUser (state, key) {
             state.user = key
         },
+        removeUser(state, key) {
+            state.user = null
+        },
         setBlips (state, key) {
             state.blips = key
         },

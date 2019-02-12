@@ -1,22 +1,26 @@
 <template>
   <div class="home">
-    <div class="grid-container quarters">
-        <div class="navbar-item"
+    <div class="grid-container fifths">
+        <h5 class="navbar-item"
             @click="toggleView('viewBlipsToggle')">
             View My Blips
-        </div>
-        <div class="navbar-item"
+        </h5>
+        <h5 class="navbar-item"
              @click="toggleView('addBlipToggle')">
             Add A Blip
-        </div>
-        <div class="navbar-item"
+        </h5>
+        <h5 class="navbar-item"
              @click="toggleView('viewContactsToggle')">
             View Contacts
-        </div>
-        <div class="navbar-item"
+        </h5>
+        <h5 class="navbar-item"
              @click="toggleView('addContactToggle')">
             Add A Contact
-        </div>
+        </h5>
+        <h5 class="navbar-item"
+             @click="logout('addContactToggle')">
+             Logout
+        </h5>
     </div>
     <div>
         <blipList v-if="toggles.viewBlipsToggle">
@@ -65,6 +69,10 @@
             Object.keys(this.toggles).forEach((key) => {
                 key === view ? this.toggles[key] = true : this.toggles[key] = false
             })
+        },
+        logout() {
+            this.$store.commit('setDefaultContacts')
+            this.$router.push({ path: '/' })
         }
     },
     mounted() {
