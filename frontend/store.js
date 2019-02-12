@@ -35,7 +35,6 @@ export default new Vuex.Store({
             })
         },
         setDefaultContacts(state, key) {
-            console.log('hit');
             state.contacts.forEach((contact) => {
                 if(contact.default && state.defaultContacts.length < 3) {
                     state.defaultContacts.push(contact)
