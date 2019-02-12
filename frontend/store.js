@@ -33,9 +33,6 @@ export default new Vuex.Store({
                 }
             })
         },
-        addBlip(state, key) {
-            state.contacts.push(key)
-        },
         addContact(state, key) {
             state.contacts.push(key)
         }

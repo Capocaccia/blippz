@@ -62,9 +62,14 @@
                 if(this.start && this.end && moment(this.start).isBefore(this.end)) {
                     eventService.blip.saveBlip(payload)
                         .then((rsp) => {
-                            if(rsp.msg === 'success') {
-                                this.$store.commit('addBlip', payload)
+                            if(rsp.data.result === 'success') {
                                 toastr.success('Blip saved.')
+                                eventService.blip.getBlips({
+                                    'user_id' : this.$store.getters.userId
+                                })
+                                .then((rsp) => {
+                                    this.$store.commit('setBlips', rsp.data.data)
+                                })
                             } else {
                                 toastr.error('An error has occurred.')
                             }
