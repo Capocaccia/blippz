@@ -34,21 +34,30 @@
                 {{ blip.notes }}
             </div>
             <div>
-                <span v-if="blip.contact_1">
-                    {{blip.first_contact.firstName}}
-                    {{blip.first_contact.lastName}}
-                    {{blip.first_contact.email}}
-                </span>
-                <span v-if="blip.contact_2">
-                    {{blip.second_contact.firstName}}
-                    {{blip.second_contact.lastName}}
-                    {{blip.second_contact.email}}
-                </span>
-                <span v-if="blip.contact_3">
-                    {{blip.third_contact.firstName}}
-                    {{blip.third_contact.lastName}}
-                    {{blip.third_contact.email}}
-                </span>
+                <div class="blip_contact" v-if="blip.contact_1">
+                    <div class="name">
+                        {{blip.first_contact.firstName}} {{blip.first_contact.lastName}}
+                    </div>
+                    <div class="email">
+                        {{blip.first_contact.email}}
+                    </div>
+                </div>
+                <div class="blip_contact" v-if="blip.contact_2">
+                    <div class="name">
+                        {{blip.second_contact.firstName}} {{blip.second_contact.lastName}}
+                    </div>
+                    <div class="email">
+                        {{blip.second_contact.email}}
+                    </div>
+                </div>
+                <div class="blip_contact" v-if="blip.contact_3">
+                    <div class="name">
+                        {{blip.third_contact.firstName}} {{blip.third_contact.lastName}}
+                    </div>
+                    <div class="email">
+                        {{blip.third_contact.email}}
+                    </div>
+                </div>
             </div>
             <div>
                 <div class="button button-no-margin"
@@ -91,5 +100,6 @@
 </script>
 
 <style scoped>
+
 
 </style>
