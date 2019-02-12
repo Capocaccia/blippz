@@ -5,7 +5,7 @@
         Welcome to Blippz.
       </h1>
       <h2 class="title">
-        Rule #1 of survival: Inform others of your plans. Let Blippz handle that.
+        Nobody plans to get lost. Leave a Blip. Be found.
       </h2>
     </div>
     <div class="login-wrapper columns is-centered">
@@ -41,7 +41,7 @@ export default {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    color:rgb(237,245,225);
+    text-align: center;
   }
 
 </style>

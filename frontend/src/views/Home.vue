@@ -1,24 +1,24 @@
 <template>
   <div class="home">
-    <div class="section level navbar">
-        <div class="notification navbar-item column is-marginless is-2 has-text-centered"
+    <div class="grid-container quarters">
+        <div class="navbar-item"
             @click="toggleView('viewBlipsToggle')">
             View My Blips
         </div>
-        <div class="notification navbar-item column is-marginless is-2 has-text-centered"
+        <div class="navbar-item"
              @click="toggleView('addBlipToggle')">
             Add A Blip
         </div>
-        <div class="notification navbar-item column is-marginless is-2 has-text-centered"
+        <div class="navbar-item"
              @click="toggleView('viewContactsToggle')">
             View Contacts
         </div>
-        <div class="notification navbar-item column is-marginless is-2 has-text-centered"
+        <div class="navbar-item"
              @click="toggleView('addContactToggle')">
             Add A Contact
         </div>
     </div>
-    <div class="section level container">
+    <div>
         <blipList v-if="toggles.viewBlipsToggle">
         </blipList>
         <createBlip v-if="toggles.addBlipToggle">
@@ -89,28 +89,23 @@
     .navbar {
         display: flex;
         justify-content: space-around;
-        background-color: rgba(5,56,107, 1);
-        color: rgb(237,245,225);
     }
 
     .navbar-item {
-        background-color: rgba(5,56,107, 1);
-        color: rgb(237,245,225);
-        padding: 2rem 2rem;
+        position: relative;
+    }
+    .navbar-item:after {
+        position: absolute;
+        bottom: 0;
         width: 100%;
-        text-align: center;
-    }
-
-    .navbar-item:hover {
-        cursor: pointer;
-        background-color: rgb(55,150,131);
+        left: 0;
+        content: '';
         transition: 0.3s;
+        height: 1px;
     }
 
-    /*rgba(5,56,107);*/
-    /*rgb(55,150,131)*/
-    /*rgb(92,219,149)*/
-    /*rgb(142,228,175)*/
-    /*rgb(237,245,225)*/
+    .navbar-item:hover::after {
+        background-color: black;
+    }
 
 </style>

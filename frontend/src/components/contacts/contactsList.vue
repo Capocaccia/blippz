@@ -1,6 +1,6 @@
 <template>
 
-    <div class="contacts-list column">
+    <div class="contacts-list interior-container">
         <div class="section">
             <h2 class="title">
                 Your Contacts

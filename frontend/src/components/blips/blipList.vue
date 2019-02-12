@@ -1,26 +1,32 @@
 <template>
-    <div class="blip-list column">
+    <div class="blip-list interior-container">
         <div>
-            <h2 class="title section">
+            <h2 class="title">
                 Your Blips
             </h2>
         </div>
-        <div class="blip is-flex is-spaced column is-full box"
+        <div class="grid-container full blip asdadsa"
              v-for="(blip, idx) in blips" :key="idx">
             <div>
-                <div class="blip-title">Start</div>
+                <h5>
+                    Start
+                </h5>
                 {{ blip.start }}
             </div>
             <div>
-                <div class="blip-title">End</div>
+                <h5>
+                    End
+                </h5>
                 {{ blip.end }}
             </div>
             <div>
-                <div class="blip-title">Notes</div>
+                <h5>
+                    Notes
+                </h5>
                 {{ blip.notes }}
             </div>
             <div>
-                <div class="blip-title">Contacts</div>
+                <h5>Contacts</h5>
                 <span v-if="blip.contact_1">
                     {{blip.first_contact.firstName}}
                     {{blip.first_contact.lastName}}
@@ -42,7 +48,7 @@
 </template>
 
 <script>
-    import { mapState } from 'vuex'
+    import {mapState} from 'vuex'
 
     export default {
         name: "blipList",
@@ -60,25 +66,10 @@
 </script>
 
 <style scoped>
-     .blip {
-         justify-content: space-around;
-     }
 
-    .title {
-        background-color: rgba(0,0,0,0.7);
-        color: white;
-        border-radius: 6px;
-    }
-
-    .box {
-        background-color: rgba(255,255,255,0.7);
-        color: white;
-    }
-
-    .blip-title {
-        font-size: 2rem;
-        font-weight: 600;
-        line-height: 1.125;
+    .blip {
+        display: flex;
+        justify-content: space-around;
     }
 
 </style>

@@ -1,22 +1,21 @@
 <template>
-    <div class="column">
-        <div class="section">
-            <h2 class="title">
-                Add A Blip
-            </h2>
-        </div>
-        <div class="add-blip">
+    <div class="interior-container">
+        <h2 class="title">
+            Add A Blip
+        </h2>
+        <div class="add-blip form-container">
             <input class="input" type="date" v-model="start">
             <input class="input" type="date" v-model="end">
-            <input class="input" type="text" placeholder="Notes" v-model="notes">
-            <button class="button" @click="createBlip">Submit Blip</button>
-            <ul>
-                <li v-for="(contact, idx) in contacts" :key="idx">
+            <textarea class="input" type="text" placeholder="Notes" v-model="notes"></textarea>
+            <h5>Select Contacts</h5>
+            <label class="input-with-label" v-for="(contact, idx) in contacts" :key="idx">
+                <input type="checkbox" :value="contact.id" @click="addContact(contact.id)">
+                <span class="label-body">
                     {{ contact.firstName }}
                     {{ contact.lastName }}
-                    <input type="checkbox" :value="contact.id" @click="addContact(contact.id)">
-                </li>
-            </ul>
+                </span>
+            </label>
+            <button class="button" @click="createBlip">Submit Blip</button>
         </div>
     </div>
 </template>
@@ -83,5 +82,19 @@
 </script>
 
 <style scoped>
+
+    .input-with-label {
+        display: flex;
+        align-items: center;
+    }
+
+    .input-with-label > input {
+        width: auto;
+        margin: 0;
+    }
+
+    h5 {
+        margin: 0 0 1rem 0;
+    }
 
 </style>
