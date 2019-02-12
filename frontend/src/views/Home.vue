@@ -81,6 +81,7 @@
       .then((rsp) => {
         this.$store.commit('setContacts', rsp.data.data)
       })
+        this.toggles.viewBlipsToggle = true
     }
   }
 </script>
