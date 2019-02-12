@@ -7,7 +7,7 @@
             <input class="input" type="date" v-model="start">
             <input class="input" type="date" v-model="end">
             <textarea class="input" type="text" placeholder="Tell your contacts where you will be and details about your adventure!" v-model="notes"></textarea>
-            <h5>Select Contacts</h5>
+            <h5>Select Contacts (Maximum of 3)</h5>
             <label class="input-with-label" v-for="(contact, idx) in contacts" :key="idx">
                 <input type="checkbox" :value="contact.id" @click="addContact(contact.id)">
                 <span class="label-body">
@@ -52,6 +52,11 @@
                     contact_2: this.blipContacts[1],
                     contact_3: this.blipContacts[2],
                     user_id: this.$store.getters.userId
+                }
+
+                if(!payload.contact_1) {
+                    toastr.error('You must have at least one contact.')
+                    return;
                 }
 
                 if(this.start && this.end && moment(this.start).isBefore(this.end)) {
