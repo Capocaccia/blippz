@@ -42,7 +42,7 @@
                     firstName: this.firstName,
                     lastName: this.lastName,
                     email: this.email,
-                    default: this.default,
+                    default: this.default !== false,
                     user_id: this.$store.getters.userId
                 }
 
