@@ -6,7 +6,7 @@
         <input type="text" placeholder="Last Name" v-model="user.lastName">
         <input type="text" placeholder="Username" v-model="user.userName">
         <input type="email" placeholder="Email" v-model="user.email">
-        <input type="text" placeholder="Password" v-model="user.password">
+        <input type="password" placeholder="Password" v-model="user.password">
         <button class="button is-primary" @click="submitRegistration">
             Register
         </button>
@@ -69,6 +69,15 @@ export default {
       emailIsValid: function (email) {
           return /\S+@\S+\.\S+/.test(email)
       },
+      passwordIsValid: function(pass) {
+          if(this.user.password) {
+              let password = this.user.password.split(' ').join('').trim();
+              return password.length > 5;
+          }
+
+          return false;
+
+      },
       submitRegistration: function () {
           let emptyValue = false
 
@@ -77,6 +86,10 @@ export default {
           if(!this.emailIsValid(this.user.email)) {
               toastr.error('The email address is invalid.');
               return;
+          }
+
+          if(!this.passwordIsValid(this.user.password)){
+              toastr.error('The password is invalid. \n It must be a minimum of 5 characters long with no spaces.');
           }
 
           if(!emptyValue) {
