@@ -6,7 +6,7 @@
         <div class="add-blip form-container">
             <input class="input" type="date" v-model="start">
             <input class="input" type="date" v-model="end">
-            <textarea class="input" type="text" placeholder="Notes" v-model="notes"></textarea>
+            <textarea class="input" type="text" placeholder="Tell your contacts where you will be and details about your adventure!" v-model="notes"></textarea>
             <h5>Select Contacts</h5>
             <label class="input-with-label" v-for="(contact, idx) in contacts" :key="idx">
                 <input type="checkbox" :value="contact.id" @click="addContact(contact.id)">
