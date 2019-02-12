@@ -44,7 +44,7 @@ class Blip extends Model
 
     public function scopeActive($query)
     {
-        return $query->where('trashed', 0);
+        return $query->where('trashed', 0)->where('end', '>=', Carbon::now());
     }
 
 
