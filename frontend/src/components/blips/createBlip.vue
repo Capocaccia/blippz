@@ -9,7 +9,7 @@
             <textarea class="input" type="text" placeholder="Tell your contacts where you will be and details about your adventure!" v-model="notes"></textarea>
             <h5>Select Contacts (Maximum of 3)</h5>
             <label class="input-with-label" v-for="(contact, idx) in contacts" :key="idx">
-                <input type="checkbox" :value="contact.id" @click="addContact(contact.id)">
+                <input type="checkbox" :value="contact.id" @click="addContact(contact)" :checked="contact.default">
                 <span class="label-body">
                     {{ contact.firstName }}
                     {{ contact.lastName }}
@@ -37,22 +37,30 @@
             }
         },
         computed: mapState([
-            'contacts'
+            'contacts',
+            'defaultContacts'
         ]),
+        watch: {
+
+        },
         components: {},
         mixins: [],
         props: [],
         methods: {
             createBlip: function () {
+                let contacts = this.blipContacts.concat(this.defaultContacts).slice(0,2)
+
                 let payload = {
                     start: this.start,
                     end: this.end,
                     notes: this.notes,
-                    contact_1: this.blipContacts[0],
-                    contact_2: this.blipContacts[1],
-                    contact_3: this.blipContacts[2],
+                    contact_1: contacts[0] ? contacts[0].id : null,
+                    contact_2: contacts[1] ? contacts[1].id : null,
+                    contact_3: contacts[2] ? contacts[2].id : null,
                     user_id: this.$store.getters.userId
                 }
+
+                console.log(contacts)
 
                 if(!payload.contact_1) {
                     toastr.error('You must have at least one contact.')
@@ -77,7 +85,6 @@
                 } else {
                     toastr.error('The end date must be after the start date.')
                 }
-
 
             },
             addContact: function(id) {

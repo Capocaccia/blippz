@@ -7,7 +7,8 @@ export default new Vuex.Store({
     state: {
         user: null,
         blips: null,
-        contacts: null
+        contacts: null,
+        defaultContacts: []
     },
     mutations: {
         setUser (state, key) {
@@ -33,6 +34,14 @@ export default new Vuex.Store({
                 }
             })
         },
+        setDefaultContacts(state, key) {
+            console.log('hit');
+            state.contacts.forEach((contact) => {
+                if(contact.default && state.defaultContacts.length < 3) {
+                    state.defaultContacts.push(contact)
+                }
+            })
+        },
         addContact(state, key) {
             state.contacts.push(key)
         }
@@ -47,11 +56,6 @@ export default new Vuex.Store({
         },
         contacts: state => {
             return state.contacts
-        }
-    },
-    setters: {
-        userId: state => {
-            return state.user.id
         }
     }
 })

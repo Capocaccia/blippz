@@ -80,6 +80,7 @@
       })
       .then((rsp) => {
         this.$store.commit('setContacts', rsp.data.data)
+        this.$store.commit('setDefaultContacts')
       })
         this.toggles.viewBlipsToggle = true
     }
