@@ -68,7 +68,7 @@
                 })
                 .then((rsp) => {
                     if(rsp.data.result === 'success') {
-                        this.$store.commit('removeContact', contactId)
+                        this.$store.commit('removeContacts', contactId)
                         toastr.success('Contact deleted.')
                     } else {
                         toastr.error('There was a problem deleting this contact.')
