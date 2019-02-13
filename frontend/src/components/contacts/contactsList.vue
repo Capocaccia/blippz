@@ -1,10 +1,10 @@
 <template>
 
-    <div class="contacts-list interior-container" v-if="contacts.length > 0">
+    <div class="contacts-list" v-if="contacts.length > 0">
         <div class="section">
-            <h2 class="title">
+            <h3 class="title">
                 Your Contacts
-            </h2>
+            </h3>
         </div>
         <div class="grid-container quarters row">
             <h5>
@@ -38,11 +38,9 @@
         </div>
     </div>
     <div v-else>
-        <div class="section">
-            <h2 class="title">
-                Your Contacts
-            </h2>
-        </div>
+        <h3 class="title">
+            Your Contacts
+        </h3>
         <h5>
             Go add some contacts!
         </h5>

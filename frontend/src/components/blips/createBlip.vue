@@ -1,8 +1,8 @@
 <template>
-    <div class="interior-container">
-        <h2 class="title">
+    <div>
+        <h3 class="title">
             Add A Blip
-        </h2>
+        </h3>
         <div class="add-blip form-container" v-if="contacts.length > 0">
             <h5>
                 Start
@@ -24,7 +24,9 @@
             <button class="button" @click="createBlip">Submit Blip</button>
         </div>
         <div v-else>
-            Add contacts first.  Then come back here.
+            <h5>
+                Add contacts first.  Then come back here.
+            </h5>
         </div>
     </div>
 </template>

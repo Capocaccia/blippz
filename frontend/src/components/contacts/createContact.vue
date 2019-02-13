@@ -1,8 +1,8 @@
 <template>
-    <div class="interior-container">
-        <h2 class="title">
+    <div>
+        <h3 class="title">
             Add A Contact
-        </h2>
+        </h3>
         <div class="add-contact form-container">
             <input type="text" placeholder="First Name" v-model="firstName">
             <input type="text" placeholder="Last Name" v-model="lastName">

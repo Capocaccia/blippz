@@ -15,10 +15,6 @@
     margin-top: 15rem;
   }
 
-  .interior-container {
-    margin-top: 5rem;
-  }
-
   input {
     margin-bottom: 1rem;
     width: 100%;
