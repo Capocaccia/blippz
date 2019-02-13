@@ -51,7 +51,7 @@ export default new Vuex.Store({
     ,
     getters: {
         userId: state => {
-            return state.user.id
+            return state.user ? state.user.id : null
         },
         user: state => {
             return state.user

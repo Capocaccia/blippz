@@ -1,5 +1,5 @@
 <template>
-    <div class="blip-list" v-if="blips.length > 0">
+    <div class="blip-list" v-if="blips && blips.length > 0">
         <div>
             <h3 class="title">
                 Your Blips
