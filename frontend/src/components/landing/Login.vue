@@ -4,7 +4,6 @@
     <div class="form-container" v-if="showRegistrationForm" >
         <input type="text" placeholder="First Name" v-model="user.firstName">
         <input type="text" placeholder="Last Name" v-model="user.lastName">
-        <input type="text" placeholder="Username" v-model="user.userName">
         <input type="email" placeholder="Email" v-model="user.email">
         <input type="password" placeholder="Password" v-model="user.password">
         <button class="button is-primary" @click="submitRegistration">
@@ -16,7 +15,7 @@
     </div>
 
     <div v-if="!showRegistrationForm " class="form-container">
-      <input type="text" placeholder="Username" v-model="username">
+      <input type="text" placeholder="Email" v-model="email">
       <input type="password" placeholder="Password" v-model="password">
       <button class="button is-primary" @click="login">Login</button>
       <button class="button is-primary" @click="activateRegistration">Register</button>
@@ -35,11 +34,10 @@ export default {
     return {
         msg: 'Login',
         password: null,
-        username: null,
+        email: null,
         user: {
             firstName: null,
             lastName: null,
-            userName: null,
             email: null,
             password: null
         },
@@ -56,23 +54,25 @@ export default {
       },
       login: function () {
           eventService.auth.userLogin({
-            username: this.username,
+            email: this.email,
             password: this.password
           })
           .then((rsp) => {
             if(rsp.data.result === 'success') {
                 this.$store.commit('setUser', rsp.data.user)
                 this.$router.push(`/${rsp.data.redirect}`)
+            } else {
+                toastr.error('Incorrect email or password.')
             }
           })
       },
       emailIsValid: function (email) {
           return /\S+@\S+\.\S+/.test(email)
       },
-      passwordIsValid: function(pass) {
+      passwordIsValid: function() {
           if(this.user.password) {
               let password = this.user.password.split(' ').join('').trim();
-              return password.length > 5;
+              return password.length > 4;
           }
 
           return false;
@@ -94,6 +94,12 @@ export default {
 
           if(!emptyValue) {
               eventService.admin.createUser(this.user)
+                  .then((rsp) => {
+                      if(rsp.data.result === 'success'){
+                          toastr.success('Thank you for registering.')
+                          this.showRegistrationForm = false
+                      }
+                  })
           }
       }
   }

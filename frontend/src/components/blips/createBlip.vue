@@ -3,7 +3,7 @@
         <h2 class="title">
             Add A Blip
         </h2>
-        <div class="add-blip form-container">
+        <div class="add-blip form-container" v-if="contacts.length > 0">
             <h5>
                 Start
             </h5>
@@ -22,6 +22,9 @@
                 </span>
             </label>
             <button class="button" @click="createBlip">Submit Blip</button>
+        </div>
+        <div v-else>
+            Add contacts first.  Then come back here.
         </div>
     </div>
 </template>

@@ -1,5 +1,5 @@
 <template>
-    <div class="blip-list interior-container">
+    <div class="blip-list interior-container" v-if="blips.length > 0">
         <div>
             <h3 class="title">
                 Your Blips
@@ -65,6 +65,16 @@
                     Delete
                 </div>
             </div>
+        </div>
+    </div>
+    <div v-else>
+        <div>
+            <h3 class="title">
+                Your Blips
+            </h3>
+            <h5>
+                You havent added any Blips yet. Click Add A Blip to get started.
+            </h5>
         </div>
     </div>
 </template>
