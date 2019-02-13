@@ -10,8 +10,12 @@
             <div>
                 Is this a default contact?
                 <select class="select" name="Default" v-model="isDefault">
-                    <option value="true">Yes</option>
-                    <option value="false">No</option>
+                    <option value="true">
+                        Yes
+                    </option>
+                    <option value="false">
+                        No
+                    </option>
                 </select>
             </div>
             <button class="button" @click="submitContact">Submit Contact</button>
@@ -62,6 +66,7 @@
                         .then((rsp) => {
                             if(rsp.data.result === 'success') {
                                 this.$store.commit('addContact', payload)
+                                this.$store.commit('setDefaultContacts')
                                 toastr.success('Contact saved!')
                             } else {
                                 toastr.error('An error has occurred.')

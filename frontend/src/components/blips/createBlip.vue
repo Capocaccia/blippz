@@ -60,18 +60,19 @@
         methods: {
             createBlip: function () {
                 let contacts = this.blipContacts.concat(this.defaultContacts).slice(0,2)
+                console.log(contacts)
 
                 let payload = {
                     start: this.start,
                     end: this.end,
                     notes: this.notes,
-                    contact_1: contacts[0] ? contacts[0].id : null,
-                    contact_2: contacts[1] ? contacts[1].id : null,
-                    contact_3: contacts[2] ? contacts[2].id : null,
+                    contact_1: contacts[0] ? contacts[0].user_id : null,
+                    contact_2: contacts[1] ? contacts[1].user_id : null,
+                    contact_3: contacts[2] ? contacts[2].user_id : null,
                     user_id: this.$store.getters.userId
                 }
 
-                if(!payload.contact_1) {
+                if(payload.contact_1 === null) {
                     toastr.error('You must have at least one contact.')
                     return;
                 }
