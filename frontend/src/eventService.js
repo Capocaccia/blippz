@@ -4,12 +4,6 @@ export default {
     auth: {
         userLogin(payload) {
             return axios.post('/auth/login/', payload)
-        },
-        userAliveAndActive() {
-            return axios.post('/auth/check/')
-        },
-        userLogout() {
-            return axios.post('/auth/logout/')
         }
     },
     admin: {

@@ -14,7 +14,7 @@ export default new Vuex.Store({
         setUser (state, key) {
             state.user = key
         },
-        removeUser(state, key) {
+        removeUser(state) {
             state.user = null
         },
         setBlips (state, key) {
@@ -37,7 +37,7 @@ export default new Vuex.Store({
                 }
             })
         },
-        setDefaultContacts(state, key) {
+        setDefaultContacts(state) {
             state.contacts.forEach((contact) => {
                 if(contact.default && state.defaultContacts.length < 3) {
                     state.defaultContacts.push(contact)
