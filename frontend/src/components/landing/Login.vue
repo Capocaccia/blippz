@@ -97,7 +97,10 @@ export default {
                   .then((rsp) => {
                       if(rsp.data.result === 'success'){
                           toastr.success('Thank you for registering.')
-                          this.showRegistrationForm = false
+                          this.$store.commit('setUser', rsp.data.user)
+                          this.$router.push(`/${rsp.data.redirect}`)
+                      } else {
+                          toastr.success('Account already exists.')
                       }
                   })
           }
