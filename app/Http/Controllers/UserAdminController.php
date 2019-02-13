@@ -14,7 +14,7 @@ class UserAdminController extends Controller
         $password = $request->password;
         $user->password = Hash::make($password);
         $user->save();
-        return response()->json(['result' => 'success', 'user' => $user, 'password' => $request->input('generatePassword') ? $password : '']);
+        return response()->json(['result' => 'success', 'user' => $user, 'redirect' => 'home']);
     }
 
 }

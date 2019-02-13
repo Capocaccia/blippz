@@ -11,7 +11,7 @@ class ContactController extends Controller
         $contact = new Contact();
         $contact->fill($request->all());
         $contact->save();
-        return response()->json(['result' => 'success']);
+        return response()->json(['result' => 'success', 'user' => $contact]);
     }
 
     public function getAll(Request $request) {
