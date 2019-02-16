@@ -46,7 +46,7 @@
                     firstName: this.firstName,
                     lastName: this.lastName,
                     email: this.email,
-                    default: this.default,
+                    default: this.isDefault === 'true',
                     user_id: this.$store.getters.userId
                 }
 
@@ -65,9 +65,10 @@
                     eventService.contact.saveContact(payload)
                         .then((rsp) => {
                             if(rsp.data.result === 'success') {
-                                this.$store.commit('addContact', payload)
+                                this.$store.commit('addContact', rsp.data.user)
                                 this.$store.commit('setDefaultContacts')
                                 toastr.success('Contact saved!')
+                                this.blankForm()
                             } else {
                                 toastr.error('An error has occurred.')
                             }
@@ -75,6 +76,12 @@
                 } else {
                     toastr.error('Please fill out all fields')
                 }
+            },
+            blankForm: function () {
+              this.firstName = null
+              this.lastName = null
+              this.email = null
+              this.isDefault = null
             },
             emailIsValid: function (email) {
                 return /\S+@\S+\.\S+/.test(email)
