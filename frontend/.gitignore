@@ -19,3 +19,5 @@ yarn-error.log*
 *.njsproj
 *.sln
 *.sw*
+sendgrid.env
+Could not open input file: echo

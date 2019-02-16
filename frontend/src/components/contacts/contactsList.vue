@@ -84,10 +84,6 @@
 
 <style scoped>
 
-    .contact {
-
-    }
-
     .contact-item {
         margin-right: 1rem;
     }
@@ -95,6 +91,5 @@
     .contact-item:last-child {
         margin-right: 0;
     }
-
 
 </style>
