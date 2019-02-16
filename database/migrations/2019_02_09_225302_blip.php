@@ -23,6 +23,8 @@ class Blip extends Migration
             $table->string('contact_2')->nullable();
             $table->string('contact_3')->nullable();
             $table->boolean('trashed')->default(false);
+            $table->boolean('creator_contacted')->default(false);
+            $table->boolean('contacts_contacted')->default(false);
             $table->timestamps();
         });
     }
