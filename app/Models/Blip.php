@@ -24,7 +24,9 @@ class Blip extends Model
         'contact_1',
         'contact_2',
         'contact_3',
-        'trashed'
+        'trashed',
+        'creator_contacted',
+        'contacts_contacted'
     ];
 
     public function firstContact()
@@ -45,6 +47,16 @@ class Blip extends Model
     public function scopeActive($query)
     {
         return $query->where('trashed', 0)->where('end', '>=', Carbon::now());
+    }
+
+    public function scopeReadyForCreatorContact($query)
+    {
+        return $query->where('trashed', 0)->where('end', '<=', Carbon::now())->where('creator_contacted', 0);
+    }
+
+    public function scopeReadyForContactsEmail($query)
+    {
+        return $query->where('trashed', 0)->where('end', '<=', Carbon::now())->where('creator_contacted', 1)->where('contacts_contacted', 0);
     }
 
 

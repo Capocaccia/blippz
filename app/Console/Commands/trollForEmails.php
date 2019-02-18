@@ -4,6 +4,8 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use App\Http\Controllers\EmailController;
+use App\Models\Blip;
+use App\User;
 
 class TrollForEmails extends Command
 {
@@ -19,7 +21,7 @@ class TrollForEmails extends Command
      *
      * @var string
      */
-    protected $description = 'Trolls for emails to be sent to Blip contacts.';
+    protected $description = 'Trolls for emails to be sent to Blip creators or contacts.';
 
     /**
      * Create a new command instance.
@@ -38,8 +40,46 @@ class TrollForEmails extends Command
      */
     public function handle()
     {
-        $controller = new EmailController();
+        $this->sendEmailToBlipCreators();
+        $this->sendEmailToContacts();
+    }
 
-        $controller->sendEmail();
+    public function sendEmailToBlipCreators()
+    {
+        $needEmail = Blip::ReadyForCreatorContact()->get();
+
+        if(count($needEmail) > 0) {
+
+            $controller = new EmailController();
+
+            foreach($needEmail as $blip) {
+                $creator = User::where('id', $blip->user_id);
+                $controller->sendCreatorEmail($creator);
+            }
+        }
+
+    }
+
+    public function sendEmailToContacts()
+    {
+        $needEmail = Blip::ReadyForContactsEmail()->get();
+
+        if(count($needEmail) > 0) {
+            $controller = new EmailController();
+
+            foreach($needEmail as $blip) {
+
+                $recipients = array();
+
+                for ($x = 1; $x <= 3; $x++) {
+                    $contact = $needEmail['contact_' . $x];
+                    is_null($contact) ? '' : array_push($listOfContacts, $contact);
+                }
+
+                $creator = User::where('id', $blip->user_id);
+
+                $controller->sendCreatorEmail($creator, $recipients, $blip->notes);
+            }
+        }
     }
 }
