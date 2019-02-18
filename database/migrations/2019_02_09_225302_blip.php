@@ -25,6 +25,7 @@ class Blip extends Migration
             $table->boolean('trashed')->default(false);
             $table->boolean('creator_contacted')->default(false);
             $table->boolean('contacts_contacted')->default(false);
+            $table->boolean('marked_safe')->default(false);
             $table->timestamps();
         });
     }

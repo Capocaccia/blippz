@@ -7,14 +7,17 @@ use SendGrid;
 
 class EmailController extends Controller
 {
-    public function sendCreatorEmail($recipient)
+    public function sendCreatorEmail($blipId, $recipient)
     {
         $email = new \SendGrid\Mail\Mail();
         $email->setFrom("test@example.com", "Example User");
         $email->setSubject("This is your Blippz Check In!");
         $email->addTo($recipient->email, "");
         $email->addContent("text/plain", "Hello " . $recipient->firstName . "! I hope you had fun on your outing.  Please click the link below to indicate you are safe.  If you do not click the link within 24 hours, your Blip contacts will be notified.");
-
+        $email->addContent("text/plain",'');
+        $email->addContent(
+            "text/html", "<a href='www.blippz.com/blip/markSafe/$blipId'>Click here to tell us you are safe!</a>"
+        );
         $sendgrid = new SendGrid(config('mail.sendgridApiKey.key'));
         try {
             $response = $sendgrid->send($email);
@@ -40,6 +43,7 @@ class EmailController extends Controller
             $email->addContent("text/plain",  '');
             $email->addContent("text/plain",  '');
             $email->addContent("text/plain",  "Notes provided by ". $creator->firstName .' ' . $creator->lastName . ": " . $notes);
+
 
             $sendgrid = new SendGrid(config('mail.sendgridApiKey.key'));
             try {

@@ -54,7 +54,7 @@ class TrollForEmails extends Command
 
             foreach($needEmail as $blip) {
                 $creator = User::where('id', $blip->user_id);
-                $controller->sendCreatorEmail($creator);
+                $controller->sendCreatorEmail($blip->id, $creator);
             }
         }
 

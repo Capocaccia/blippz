@@ -26,4 +26,14 @@ class BlipController extends Controller
         $blipToDelete->save();
         return response()->json(['result' => 'success']);
     }
+
+    public function markSafe(Request $request) {
+        $blip = Blip::where('id', $request->input('id'))->firstOrFail();
+
+        if($blip) {
+            $blip->marked_safe = 1;
+            $blip->save();
+            return response()->json(['result' => 'success']);
+        }
+    }
 }

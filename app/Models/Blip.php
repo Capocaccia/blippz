@@ -56,7 +56,7 @@ class Blip extends Model
 
     public function scopeReadyForContactsEmail($query)
     {
-        return $query->where('trashed', 0)->where('end', '<=', Carbon::now())->where('creator_contacted', 1)->where('contacts_contacted', 0);
+        return $query->where('trashed', 0)->where('end', '<=', Carbon::now())->where('creator_contacted', 1)->where('contacts_contacted', 0)->where('marked_safe', 0);
     }
 
 
