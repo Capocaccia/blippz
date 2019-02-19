@@ -20,6 +20,9 @@ export default {
         },
         delete(payload) {
             return axios.post('/blip/delete', payload)
+        },
+        markSafe(payload) {
+            return axios.post('/blip/markSafe', payload)
         }
     },
     contact: {

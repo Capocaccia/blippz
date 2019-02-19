@@ -29,7 +29,7 @@ class BlipController extends Controller
     }
 
     public function markSafe(Request $request) {
-        $blip = Blip::where('id', $request->input('id'))->firstOrFail();
+        $blip = Blip::where('id', $request->id)->firstOrFail();
 
         if($blip) {
             $blip->marked_safe = 1;

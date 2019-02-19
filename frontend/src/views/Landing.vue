@@ -25,6 +25,7 @@
 <script>
 // @ is an alias to /src
 import login from '../components/landing/Login'
+import eventService from '../eventService'
 
 export default {
   name: 'landing',
@@ -37,6 +38,16 @@ export default {
     login
   },
   methods: {
+  },
+  mounted() {
+    if(this.$route.fullPath.includes('markSafe')) {
+      let payload = this.$route.fullPath.split('/')
+      if(payload[4]) {
+        eventService.blip.markSafe({
+          'id': payload[4]
+        })
+      }
+    }
   }
 }
 </script>

@@ -26,7 +26,7 @@ Route::prefix('blip')->group(function() {
     Route::post('save', 'BlipController@save');
     Route::post('all', 'BlipController@getAll');
     Route::post('delete', 'BlipController@delete');
-    Route::get('markSafe/{id}', 'BlipController@markSafe');
+    Route::post('markSafe', 'BlipController@markSafe');
 });
 
 Route::prefix('contact')->group(function() {
