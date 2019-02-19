@@ -46,17 +46,17 @@ class Blip extends Model
 
     public function scopeActive($query)
     {
-        return $query->where('trashed', 0)->where('end', '>=', Carbon::now());
+        return $query->where('trashed', 0)->where('end', '>=', Carbon::today('America/Chicago')->toDateString());
     }
 
     public function scopeReadyForCreatorContact($query)
     {
-        return $query->where('trashed', 0)->where('end', '<=', Carbon::now())->where('creator_contacted', 0);
+        return $query->where('trashed', 0)->where('end', '<=', Carbon::today('America/Chicago')->toDateString())->where('creator_contacted', 0);
     }
 
     public function scopeReadyForContactsEmail($query)
     {
-        return $query->where('trashed', 0)->where('end', '<=', Carbon::now()->subDay(1))->where('creator_contacted', 1)->where('contacts_contacted', 0)->where('marked_safe', 0);
+        return $query->where('trashed', 0)->where('end', '<=', Carbon::today('America/Chicago')->subDay(1)->toDateString())->where('creator_contacted', 1)->where('contacts_contacted', 0)->where('marked_safe', 0);
     }
 
 
