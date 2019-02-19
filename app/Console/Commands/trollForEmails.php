@@ -40,20 +40,25 @@ class TrollForEmails extends Command
      */
     public function handle()
     {
-        $this->sendEmailToBlipCreators();
         $this->sendEmailToContacts();
+        $this->sendEmailToBlipCreators();
     }
 
     public function sendEmailToBlipCreators()
     {
         $needEmail = Blip::ReadyForCreatorContact()->get();
 
+
         if(count($needEmail) > 0) {
 
             $controller = new EmailController();
 
             foreach($needEmail as $blip) {
-                $creator = User::where('id', $blip->user_id);
+                $creator = User::where('id', $blip->user_id)->firstOrFail();
+
+                $blip->creator_contacted = true;
+                $blip->save();
+
                 $controller->sendCreatorEmail($blip->id, $creator);
             }
         }
@@ -72,13 +77,20 @@ class TrollForEmails extends Command
                 $recipients = array();
 
                 for ($x = 1; $x <= 3; $x++) {
-                    $contact = $needEmail['contact_' . $x];
-                    is_null($contact) ? '' : array_push($listOfContacts, $contact);
+                    $contact = $blip['contact_' . $x];
+                    if(!is_null($contact)) {
+                        //get the recipient from the model
+                        $contactModel = User::where('id', $contact)->firstOrFail();
+                        array_push($recipients, $contactModel);
+                    }
                 }
 
-                $creator = User::where('id', $blip->user_id);
+                $creator = User::where('id', $blip->user_id)->firstOrFail();
 
-                $controller->sendCreatorEmail($creator, $recipients, $blip->notes);
+                $blip->contacts_contacted = true;
+                $blip->save();
+
+                $controller->sendContactsEmail($creator, $recipients, $blip->notes);
             }
         }
     }

@@ -9,12 +9,12 @@ class EmailController extends Controller
 {
     public function sendCreatorEmail($blipId, $recipient)
     {
+
         $email = new \SendGrid\Mail\Mail();
-        $email->setFrom("test@example.com", "Example User");
+        $email->setFrom("test@example.com", "Blippz.com");
         $email->setSubject("This is your Blippz Check In!");
         $email->addTo($recipient->email, "");
         $email->addContent("text/plain", "Hello " . $recipient->firstName . "! I hope you had fun on your outing.  Please click the link below to indicate you are safe.  If you do not click the link within 24 hours, your Blip contacts will be notified.");
-        $email->addContent("text/plain",'');
         $email->addContent(
             "text/html", "<a href='www.blippz.com/blip/markSafe/$blipId'>Click here to tell us you are safe!</a>"
         );
@@ -35,14 +35,10 @@ class EmailController extends Controller
 
         foreach($recipients as $recipient) {
 
-            $email->setFrom("test@example.com", "Example User");
+            $email->setFrom("test@example.com", "Blippz.com");
             $email->setSubject("Urgent: Your friend " . $creator->firstName .' ' . $creator->lastName . " needs your attention.");
-            $email->addTo($recipient, "");
-            $email->addContent("text/plain", "Hello. " . $creator->firstName .' ' . $creator->lastName . " has not indicated a safe return from their outing.  They requested we contact you with the notes below in case they may be in trouble.  Please try and make contact with " . $creator->firstName .' ' . $creator->lastName . " as soon as possible.");
-            $email->addContent("text/plain",  '');
-            $email->addContent("text/plain",  '');
-            $email->addContent("text/plain",  '');
-            $email->addContent("text/plain",  "Notes provided by ". $creator->firstName .' ' . $creator->lastName . ": " . $notes);
+            $email->addTo($recipient->email, "");
+            $email->addContent("text/plain", "Hello. " . $creator->firstName .' ' . $creator->lastName . " has not indicated a safe return from their outing.  They requested we contact you with the notes below in case they may be in trouble.  Please try and make contact with " . $creator->firstName .' ' . $creator->lastName . " as soon as possible. \n \n Notes provided by ". $creator->firstName .' ' . $creator->lastName . ": " . $notes);
 
 
             $sendgrid = new SendGrid(config('mail.sendgridApiKey.key'));

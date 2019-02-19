@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Blip;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class BlipController extends Controller
 {
