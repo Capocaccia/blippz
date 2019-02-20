@@ -2,17 +2,15 @@
   <div class="home">
     <div class="heading">
       <h1 class="title">
-        Welcome to Blippz.
+        Thank you for using Blippz!
       </h1>
       <h2 class="title">
-        Nobody plans to get lost. Leave a Blip. Be found.
+         We know you are safe! Hope you had fun!
       </h2>
       <h4>
-        How it works:
+        Log in below to add another Blip!
       </h4>
       <h5>
-        Add your contacts.  Add a Blip. When your Blip ends, we will check on you with an email.
-        If the email isnt acknowledged, we notify your contacts with the notes you provided.
       </h5>
     </div>
     <div class="login-wrapper columns is-centered">
@@ -23,11 +21,12 @@
 </template>
 
 <script>
-// @ is an alias to /src
+
 import login from '../components/landing/Login'
+import eventService from '../eventService'
 
 export default {
-  name: 'landing',
+  name: 'MarkSafe',
   data() {
     return {
       register: false,
@@ -35,6 +34,16 @@ export default {
   },
   components: {
     login
+  },
+  methods: {
+  },
+  mounted() {
+    let payload = this.$route.fullPath.split('/')
+    if(payload[2] && Number.isInteger(parseInt(payload[2]))) {
+      eventService.blip.markSafe({
+        'id': payload[2]
+      })
+    }
   }
 }
 </script>

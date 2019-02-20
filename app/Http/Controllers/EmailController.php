@@ -15,7 +15,7 @@ class EmailController extends Controller
         $email->setSubject("This is your Blippz Check In!");
         $email->addTo($recipient->email, "$recipient->firstName" . " " . "$recipient->lastName");
         $email->addContent(
-            "text/html", "Hello " . $recipient->firstName . "! I hope you had fun on your outing.  Please click the link below to indicate you are safe.  If you do not click the link within 24 hours, your Blip contacts will be notified. <br/><br/> <a href='www.blippz.com/#/blip/markSafe/$blipId'>Click here to tell Blippz you are safe!</a>"
+            "text/html", "Hello " . $recipient->firstName . "! I hope you had fun on your outing.  Please click the link below to indicate you are safe.  If you do not click the link within 24 hours, your Blip contacts will be notified. <br/><br/> <a href='www.blippz.com/#/markSafe/$blipId'>Click here to tell Blippz you are safe!</a>"
         );
         $sendgrid = new SendGrid(config('mail.sendgridApiKey.key'));
         try {
