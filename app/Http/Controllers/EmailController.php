@@ -11,7 +11,7 @@ class EmailController extends Controller
     {
 
         $email = new \SendGrid\Mail\Mail();
-        $email->setFrom("test@example.com", "Blippz.com");
+        $email->setFrom("noreply@blippz.com", "Blippz.com");
         $email->setSubject("This is your Blippz Check In!");
         $email->addTo($recipient->email, "$recipient->firstName" . " " . "$recipient->lastName");
         $email->addContent(
@@ -34,7 +34,7 @@ class EmailController extends Controller
 
         foreach($recipients as $recipient) {
 
-            $email->setFrom("blippz@example.com", "Blippz.com");
+            $email->setFrom("noreply@blippz.com", "Blippz.com");
             $email->setSubject("Urgent: Your friend " . $creator->firstName .' ' . $creator->lastName . " needs your attention.");
             $email->addTo($recipient->email, "$recipient->firstName" . " " . "$recipient->lastName");
             $email->addContent("text/plain", "Hello. " . $creator->firstName .' ' . $creator->lastName . " has not indicated a safe return from their outing.  They requested we contact you with the notes below in case they may be in trouble.  Please try and make contact with " . $creator->firstName .' ' . $creator->lastName . " as soon as possible. \n \n Notes provided by ". $creator->firstName .' ' . $creator->lastName . ": " . $notes);
