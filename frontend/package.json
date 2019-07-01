@@ -18,6 +18,7 @@
     "@vue/cli-plugin-babel": "^3.0.0-rc.9",
     "@vue/cli-plugin-eslint": "^3.0.0-rc.9",
     "@vue/cli-service": "^3.0.0-rc.9",
+    "cypress": "^3.3.2",
     "moment": "^2.24.0",
     "node-sass": "^4.11.0",
     "sass-loader": "^7.1.0",
