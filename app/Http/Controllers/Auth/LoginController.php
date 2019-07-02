@@ -42,10 +42,14 @@ class LoginController extends Controller
         $username = $request->input('email');
         $password = $request->input('password');
 
+        $user = [
+            'username' => $username,
+            'password' => $password
+        ];
+
 
         Auth::login($user);
         return response()->json($user);
 
-        return response()->json($user);
     }
 }
