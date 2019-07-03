@@ -1,5 +1,7 @@
 <template>
   <div class="home">
+      <titlebar>
+      </titlebar>
     <div class="grid-container fifths">
         <h5 class="navbar-item"
             @click="toggleView('viewBlipsToggle')">
@@ -42,6 +44,7 @@
   import createContact from '../components/contacts/createContact'
   import create from '../components/create'
   import eventService from '../eventService'
+  import titlebar from '../components/titlebar'
 
   export default {
     name: 'home',
@@ -62,7 +65,8 @@
       create,
       createBlip,
       contactList,
-      createContact
+      createContact,
+        titlebar
     },
     methods: {
         toggleView(view) {
