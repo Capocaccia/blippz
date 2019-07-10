@@ -5,11 +5,16 @@ namespace App\Http\Controllers;
 use App\Models\Blip;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use Carbon\Carbon;
 
 class BlipController extends Controller
 {
     public function save(Request $request) {
         $blip = new Blip();
+        $end_time = $request->end_time;
+        unset($request['end_time']);
+        $request['end_time'] = Carbon::parse($request->end_time, 'America/Chicago')
+                                ->toDateTimeString();
         $blip->fill($request->all());
         $blip->save();
         return response()->json(['result' => 'success']);

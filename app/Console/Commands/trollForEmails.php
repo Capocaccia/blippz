@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Models\Contact;
 use Illuminate\Console\Command;
 use App\Http\Controllers\EmailController;
 use App\Models\Blip;
@@ -80,7 +81,7 @@ class TrollForEmails extends Command
                     $contact = $blip['contact_' . $x];
                     if(!is_null($contact)) {
                         //get the recipient from the model
-                        $contactModel = User::where('id', $contact)->firstOrFail();
+                        $contactModel = Contact::where('id', $contact)->firstOrFail();
                         array_push($recipients, $contactModel);
                     }
                 }
