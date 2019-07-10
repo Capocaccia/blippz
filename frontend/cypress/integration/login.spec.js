@@ -8,7 +8,7 @@ context( 'Login', () => {
             .type('test@gmail.com')
     })
 
-    it('Submits Complete Login', () => {
+    it('Submits Complete Successful Login', () => {
         cy.server()
         cy.route({
             method: 'POST',
@@ -43,6 +43,8 @@ context( 'Login', () => {
                 // debugger;
                 expect(xhr.requestBody).to.have.property('email')
                 expect(xhr.requestBody).to.have.property('password')
+                expect(xhr.responseBody).to.have.property('result')
+                expect(xhr.responseBody).to.have.property('redirect')
             })
 
         cy.url()
@@ -50,6 +52,41 @@ context( 'Login', () => {
 
 
     })
+
+    it.only('Submits Complete Unsuccessful Login', () => {
+        cy.server()
+        cy.route({
+            method: 'POST',
+            url: '/auth/login'
+        })
+            .as('loginMethod')
+
+        cy.getByPlaceholderText('Email')
+            .type('notauser@gmail.com')
+        cy.getByPlaceholderText('Password')
+            .type('null')
+        cy.getByText('Login')
+            .click({
+                force: true
+            })
+
+        cy.wait('@loginMethod')
+
+        cy.get('@loginMethod')
+            .should(xhr => {
+                // debugger;
+                expect(xhr.requestBody).to.have.property('email')
+                expect(xhr.requestBody).to.have.property('password')
+                expect(xhr.responseBody).to.have.property('result')
+                expect(xhr.responseBody).to.have.property('msg')
+            })
+
+        cy.getByText('Incorrect email or password', {
+            exact: false
+        })
+
+    })
+
 
     it('Has has a title', () => {
         cy.getByText('Welcome To Blippz.', {
