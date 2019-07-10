@@ -53,7 +53,7 @@ context( 'Login', () => {
 
     })
 
-    it.only('Submits Complete Unsuccessful Login', () => {
+    it('Submits Complete Unsuccessful Login', () => {
         cy.server()
         cy.route({
             method: 'POST',
