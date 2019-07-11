@@ -12,6 +12,7 @@
                 End
             </h5>
             <input class="input" type="date" v-model="end">
+            <input type="time" name="usr_time" v-model="end_time">
             <textarea class="input" type="text" placeholder="Tell your contacts where you will be and details about your adventure!" v-model="notes"></textarea>
             <h5>Select Contacts (Maximum of 3)</h5>
             <label class="input-with-label" v-for="(contact, idx) in contacts" :key="idx">
@@ -43,6 +44,7 @@
             return {
                 start: null,
                 end: null,
+                end_time: null,
                 notes: null,
                 blipContacts: [],
             }
@@ -77,7 +79,8 @@
                     contact_1: contacts[0] ? contacts[0].id : null,
                     contact_2: contacts[1] ? contacts[1].id : null,
                     contact_3: contacts[2] ? contacts[2].id : null,
-                    user_id: this.$store.getters.userId
+                    user_id: this.$store.getters.userId,
+                    end_time: this.end_time
                 }
 
                 if(payload.contact_1 === null) {
@@ -87,6 +90,10 @@
 
                 if(payload.notes === null) {
                     toastr.error('Include some notes you want to tell your contact(s).')
+                }
+
+                if(!payload.end_time) {
+                    toastr.error('Please provide an end time for your blip.')
                 }
 
                 if(this.start && this.end && moment(this.start).isBefore(this.end)) {

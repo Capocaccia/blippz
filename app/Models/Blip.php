@@ -26,7 +26,8 @@ class Blip extends Model
         'contact_3',
         'trashed',
         'creator_contacted',
-        'contacts_contacted'
+        'contacts_contacted',
+        'end_time'
     ];
 
     public function firstContact()
@@ -46,17 +47,28 @@ class Blip extends Model
 
     public function scopeActive($query)
     {
-        return $query->where('trashed', 0)->where('end', '>=', Carbon::today('America/Chicago')->toDateString());
+        return $query->where('trashed', 0)
+            ->where('end_time', '>=', Carbon::today('America/Chicago')
+                ->toDateString());
     }
 
     public function scopeReadyForCreatorContact($query)
     {
-        return $query->where('trashed', 0)->where('end', '<=', Carbon::today('America/Chicago')->toDateString())->where('creator_contacted', 0);
+        return $query->where('trashed', 0)
+            ->where('creator_contacted', 0)
+            ->where('end_time', '<=', Carbon::now('America/Chicago'));
     }
 
     public function scopeReadyForContactsEmail($query)
     {
-        return $query->where('trashed', 0)->where('end', '<=', Carbon::today('America/Chicago')->subDay(1)->toDateString())->where('creator_contacted', 1)->where('contacts_contacted', 0)->where('marked_safe', 0);
+        return $query->where('trashed', 0)
+            ->where('creator_contacted', 1)
+            ->where('contacts_contacted', 0)
+            ->where('marked_safe', 0)
+            ->where('end_time', '<=', Carbon::now('America/Chicago')
+                //this puts the carbon time 3 hours behind so it waits until
+                //three hours past the end_time to send the email to the contacts
+                ->subHours(3));
     }
 
 
