@@ -1,7 +1,7 @@
 <template>
   <div class="login">
 
-    <div class="form-container" v-if="showRegistrationForm" >
+    <div class="form-container" v-if="showRegistrationForm"  @keyup.enter="submitRegistration">
         <input type="text" placeholder="First Name" v-model="user.firstName">
         <input type="text" placeholder="Last Name" v-model="user.lastName">
         <input type="email" placeholder="Email" v-model="user.email">
@@ -14,7 +14,7 @@
         </button>
     </div>
 
-    <div v-if="!showRegistrationForm " class="form-container">
+    <div v-if="!showRegistrationForm " class="form-container" @keyup.enter="login">
       <input type="text" placeholder="Email" v-model="email">
       <input type="password" placeholder="Password" v-model="password">
       <button class="button is-primary" @click="login">Login</button>
