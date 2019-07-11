@@ -13,7 +13,7 @@ class BlipController extends Controller
         $blip = new Blip();
         $end_time = $request->end_time;
         unset($request['end_time']);
-        $request['end_time'] = Carbon::parse($request->end_time, 'America/Chicago')
+        $request['end_time'] = Carbon::parse($end_time, 'America/Chicago')
                                 ->toDateTimeString();
         $blip->fill($request->all());
         $blip->save();
