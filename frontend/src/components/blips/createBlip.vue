@@ -1,7 +1,7 @@
 <template>
     <div>
         <h3 class="title">
-            Add A Blip
+            Add A Blip (All fields are mandatory)
         </h3>
         <div class="add-blip form-container" v-if="contacts.length > 0">
             <h5>
@@ -100,13 +100,21 @@
                     eventService.blip.saveBlip(payload)
                         .then((rsp) => {
                             if(rsp.data.result === 'success') {
+
+                                //notify of success
                                 toastr.success('Blip saved.')
+
+                                //get the blips from the db again
                                 eventService.blip.getBlips({
                                     'user_id' : this.$store.getters.userId
                                 })
+                                //commit the response to store
                                 .then((rsp) => {
                                     this.$store.commit('setBlips', rsp.data.data)
                                 })
+
+                                //after submission clear out the form
+                                this.resetBlipForm()
                             } else {
                                 toastr.error('An error has occurred.')
                             }
@@ -115,6 +123,13 @@
                     toastr.error('The end date must be after the start date.')
                 }
 
+            },
+            resetBlipForm:function() {
+                this.start = null
+                this.end = null
+                this.end_time = null
+                this.notes = null
+                this.blipContacts = []
             },
             addContact: function(id) {
                 if(this.blipContacts.indexOf(id) === -1 && this.blipContacts.length <= 3) {
