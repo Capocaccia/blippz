@@ -1,4 +1,4 @@
-# Blippz
+# Blippz (No Longer Live)
 
 Blippz is an app that allows people who love the outdoors to be safer.  When you create an account, you add contacts and add a blip.  When this blip ends, Blippz will check in with the blip creator to make sure they are safe.  If they do not respond, Blippz sends an email to the contacts letting them know they may need help.
 
