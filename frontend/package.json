@@ -20,7 +20,7 @@
     "@vue/cli-service": "^5.0.8",
     "cypress": "^10.9.0",
     "moment": "^2.29.4",
-    "node-sass": "^7.0.3",
+    "node-sass": "^9.0.0",
     "sass-loader": "^13.2.0",
     "vue-template-compiler": "^2.6.10"
   },
